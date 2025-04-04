@@ -7,9 +7,18 @@
 <body>
   <h1>Ladda upp flygfiler till Copture</h1>
 
-  <label>Pilotnamn: <input type="text" id="pilot" required></label><br>
-  <label>Projektnamn: <input type="text" id="project" required></label><br>
-  <label>Filer: <input type="file" id="files" multiple required></label><br>
+  <label>Pilotnamn:
+    <input type="text" id="pilot" required>
+  </label><br>
+
+  <label>Projektnamn:
+    <input type="text" id="project" required>
+  </label><br>
+
+  <label>Filer:
+    <input type="file" id="files" multiple required>
+  </label><br>
+
   <button onclick="upload()">Ladda upp</button>
 
   <div id="status" style="margin-top: 20px; font-family: monospace;"></div>
@@ -27,18 +36,17 @@
       }
 
       const formData = new FormData();
-
       for (const file of files) {
-        formData.append("file", file); // UploadThing kräver detta fält
+        formData.append("file", file); // UploadThing v7 kräver "file"
       }
 
-      formData.append("route", "pilotUploader"); // Matchar routern i uploadthing.js
-      formData.append("metadata", JSON.stringify({ pilot, project })); // 👈 Viktigt
+      formData.append("route", "pilotUploader");
+      formData.append("metadata", JSON.stringify({ pilot, project }));
 
       try {
         const response = await fetch("/api/uploadthing", {
           method: "POST",
-          body: formData,
+          body: formData
         });
 
         const result = await response.text();
