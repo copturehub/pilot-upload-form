@@ -1,4 +1,4 @@
-import { createUploadthing } from "uploadthing/server";
+import { createUploadthing, type FileRouter } from "uploadthing/server";
 import { createRouteHandler } from "uploadthing/next";
 
 const f = createUploadthing();
@@ -10,9 +10,8 @@ export const ourFileRouter = {
       console.log("Filnamn:", file.name);
       console.log("Metadata:", metadata);
     }),
-};
+} satisfies FileRouter;
 
-// ✅ V7-style route handler export (ingen FileRouter här!)
 export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
