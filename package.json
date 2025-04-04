@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "busboy": "^1.6.0"
+    "uploadthing": "^5.2.2"
   }
 }
