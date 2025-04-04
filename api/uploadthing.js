@@ -10,4 +10,4 @@ export const ourFileRouter = {
     }),
 } satisfies FileRouter;
 
-export const { GET, POST } = uploadthingHandler({ router: ourFileRouter });
+export default uploadthingHandler({ router: ourFileRouter });
