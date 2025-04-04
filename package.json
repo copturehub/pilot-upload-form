@@ -1,8 +1,18 @@
-"dependencies": {
-  "next": "14.1.4",
-  "react": "18.2.0",
-  "react-dom": "18.2.0",
-  "uploadthing": "^7.0.0",
-  "@uploadthing/react": "^7.0.0",  ← ✅ UPPDATERAD
-  "zod": "^3.22.4"
+{
+  "name": "pilot-upload-form",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.1.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "uploadthing": "^7.0.0",
+    "@uploadthing/react": "^5.0.0",
+    "zod": "^3.22.4"
+  }
 }
