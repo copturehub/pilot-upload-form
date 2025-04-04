@@ -1,8 +1,4 @@
-{
-  "name": "pilot-upload-form",
-  "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
-    "uploadthing": "^7.0.0"
-  }
+"dependencies": {
+  "uploadthing": "^7.0.0",
+  "@uploadthing/react": "^5.0.0"
 }
