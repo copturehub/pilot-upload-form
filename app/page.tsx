@@ -1,71 +1,32 @@
+// app/page.tsx
 "use client";
 
-import { UploadDropzone } from "@uploadthing/react";
-import type { OurFileRouter } from "./api/uploadthing/core";
-import "@uploadthing/react/styles.css";
-import { useState } from "react";
+import { UploadButton } from "@uploadthing/react";
+import { ourFileRouter } from "./api/uploadthing/core";
 
-export default function UploadPage() {
-  const [pilot, setPilot] = useState("");
-  const [project, setProject] = useState("");
-  const [error, setError] = useState("");
-
-  const isFormComplete = pilot.trim() !== "" && project.trim() !== "";
-
+export default function Home() {
   return (
-    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h1>Ladda upp flygfiler till Copture</h1>
+    <main style={{ padding: 40, fontFamily: "sans-serif" }}>
+      <h1>🛫 Ladda upp flygfiler till Copture</h1>
 
-      <label>
-        Pilotnamn:{" "}
-        <input
-          type="text"
-          value={pilot}
-          onChange={(e) => setPilot(e.target.value)}
-          placeholder="Ex: Anna"
-        />
-      </label>
-      <br />
-      <label>
-        Projektnamn:{" "}
-        <input
-          type="text"
-          value={project}
-          onChange={(e) => setProject(e.target.value)}
-          placeholder="Ex: Skog123"
-        />
-      </label>
-
-      <br />
-      <br />
-
-      {isFormComplete ? (
-        <UploadDropzone<OurFileRouter>
-          endpoint="pilotUploader"
-          input={{ pilot, project }}
-          onClientUploadComplete={(res) => {
-            console.log("✅ Upload klar:", res);
-            alert("✅ Filuppladdning slutförd!");
-          }}
-          onUploadError={(error: Error) => {
-            console.error("❌ Fel vid uppladdning:", error);
-            setError(error.message);
-          }}
-          appearance={{
-            button: "bg-blue-500 text-white px-4 py-2 rounded mt-2",
-          }}
-        />
-      ) : (
-        <p style={{ color: "gray", marginTop: "1rem" }}>
-          Fyll i pilot- och projektnamn för att aktivera uppladdning.
-        </p>
-      )}
-
-      {error && (
-        <p style={{ color: "red", marginTop: "1rem" }}>
-          ❌ Fel: {error}
-        </p>
-      )}
+      <UploadButton
+        endpoint="pilotUploader"
+        onClientUploadComplete={(res) => {
+          alert("✅ Uppladdning klar!");
+          console.log("Resultat:", res);
+        }}
+        onUploadError={(error: Error) => {
+          alert("❌ Fel: " + error.message);
+        }}
+        appearance={{
+          button: {
+            backgroundColor: "#222",
+            color: "#fff",
+            padding: "10px 15px",
+            borderRadius: "6px",
+          },
+        }}
+      />
     </main>
   );
 }
