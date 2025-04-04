@@ -36,16 +36,12 @@
       }
 
       const formData = new FormData();
-
       for (const file of files) {
-        formData.append("file", file); // UploadThing kräver "file"
+        formData.append("file", file); // OBS: singular key "file"
       }
 
-      // Skicka även med route till rätt endpoint
-      formData.append("route", "pilotUploader");
-
       try {
-        const response = await fetch("/api/uploadthing", {
+        const response = await fetch("/api/uploadthing/pilotUploader", {
           method: "POST",
           body: formData
         });
