@@ -5,19 +5,45 @@
   <title>Filuppladdning - Copture</title>
 </head>
 <body>
-  <h1>Uppladdning för piloter</h1>
-<h1>Uppladdning för piloter</h1>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-  <label>Pilotnamn:
-    <input type="text" name="pilot" required />
-  </label><br/>
-  <label>Projektnamn:
-    <input type="text" name="project" required />
-  </label><br/>
-  <label>Filer:
-    <input type="file" name="files" multiple required />
-  </label><br/>
-  <button type="submit">Ladda upp</button>
-</form>
+<h1>Ladda upp flygfiler till Copture</h1>
+
+<label>Pilotnamn: <input type="text" id="pilot" required></label><br>
+<label>Projektnamn: <input type="text" id="project" required></label><br>
+<label>Filer: <input type="file" id="files" multiple required></label><br>
+<button onclick="upload()">Ladda upp</button>
+
+<div id="status"></div>
+
+<script>
+  async function upload() {
+    const pilot = document.getElementById("pilot").value;
+    const project = document.getElementById("project").value;
+    const files = document.getElementById("files").files;
+
+    if (!pilot || !project || files.length === 0) {
+      document.getElementById("status").innerText = "Fyll i alla fält.";
+      return;
+    }
+
+    const formData = new FormData();
+    for (const file of files) {
+      formData.append("files", file);
+    }
+
+    try {
+      const response = await fetch("/api/uploadthing", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      document.getElementById("status").innerText = "Uppladdat!";
+      console.log(result);
+    } catch (error) {
+      document.getElementById("status").innerText = "Fel vid uppladdning.";
+      console.error(error);
+    }
+  }
+</script>
 </body>
 </html>
