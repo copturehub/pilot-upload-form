@@ -1,4 +1,7 @@
 {
+  "name": "pilot-upload-form",
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "uploadthing": "^5.2.2"
   }
