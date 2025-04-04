@@ -16,4 +16,3 @@ export const ourFileRouter = {
 } satisfies FileRouter;
 
 export default uploadthingHandler({ router: ourFileRouter });
-asa
