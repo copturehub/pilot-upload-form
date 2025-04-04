@@ -1,7 +1,7 @@
-import { init, createUploadthing, type FileRouter } from "uploadthing/server";
+import { init, createUploadthing } from "uploadthing/server";
 import { uploadthingHandler } from "uploadthing/next";
 
-// 🧠 Initiera med miljövariabel från Vercel Settings
+// Initiera miljövariabler (från Vercel)
 init({
   apiKey: process.env.UPLOADTHING_SECRET,
 });
@@ -15,9 +15,9 @@ export const ourFileRouter = {
       console.log("Filnamn:", file.name);
       console.log("Metadata:", metadata);
     }),
-} satisfies FileRouter;
+};
 
-// 🛠️ Lägg till fallback för felutskrift
+// Lägg till fallback-felutskrift
 export const { GET, POST } = uploadthingHandler({
   router: ourFileRouter,
   config: {
