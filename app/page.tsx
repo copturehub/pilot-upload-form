@@ -1,35 +1,29 @@
+// app/page.tsx
 "use client";
 
 import { UploadDropzone } from "@uploadthing/react";
-import { generateReactHelpers } from "@uploadthing/react/hooks";
-import type { OurFileRouter } from "@/app/api/uploadthing/core"; // du kan behöva anpassa sökvägen
+import type { OurFileRouter } from "./api/uploadthing/core";
+import "@uploadthing/react/styles.css";
 
-const { useUploadThing } = generateReactHelpers<OurFileRouter>();
-
-export default function UploadPage() {
-  const { startUpload, permittedFileInfo, isUploading, fileTypes } = useUploadThing("pilotUploader");
-
+export default function Home() {
   return (
     <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h1>Ladda upp flygfiler till Copture</h1>
 
-      <UploadDropzone
+      <UploadDropzone<OurFileRouter>
         endpoint="pilotUploader"
         onClientUploadComplete={(res) => {
-          console.log("✅ Upload complete", res);
-          alert("✅ Filerna har laddats upp!");
+          console.log("✅ Upload klar:", res);
+          alert("✅ Filen är uppladdad!");
         }}
-        onUploadError={(err) => {
-          console.error("❌ Upload error", err);
-          alert("❌ Fel vid uppladdning: " + err.message);
+        onUploadError={(error: Error) => {
+          console.error("❌ Fel vid uppladdning:", error);
+          alert(`Fel: ${error.message}`);
         }}
-        appearance={{
-          label: "Dra och släpp filer här eller klicka",
-          button: "Ladda upp",
+        config={{
+          mode: "auto",
         }}
       />
-
-      {isUploading && <p>⏳ Laddar upp...</p>}
     </main>
   );
 }
