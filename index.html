@@ -36,8 +36,8 @@
         body: formData,
       });
 
-      const result = await response.json();
-      document.getElementById("status").innerText = "Uppladdat!";
+      const result = await response.text();
+      document.getElementById("status").innerText = "Svar från servern: " + result;
       console.log(result);
     } catch (error) {
       document.getElementById("status").innerText = "Fel vid uppladdning.";
