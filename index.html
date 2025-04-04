@@ -37,7 +37,7 @@
 
       const formData = new FormData();
       for (const file of files) {
-        formData.append("file", file); // OBS: singular key "file"
+        formData.append("file", file); // UploadThing v7 kräver exakt "file"
       }
 
       try {
