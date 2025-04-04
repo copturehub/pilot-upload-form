@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "uploadthing": "^5.2.2"
+    "uploadthing": "^7.0.0"
   }
 }
