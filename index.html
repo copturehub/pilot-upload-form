@@ -27,11 +27,11 @@
 
     const formData = new FormData();
     for (const file of files) {
-      formData.append("files", file);
+      formData.append("file", file); // OBS! singular
     }
 
     try {
-      const response = await fetch("/api/uploadthing", {
+      const response = await fetch("/api/uploadthing/pilotUploader", {
         method: "POST",
         body: formData,
       });
