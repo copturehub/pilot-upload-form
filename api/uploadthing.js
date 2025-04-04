@@ -1,5 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/server";
-import { uploadthingHandler } from "uploadthing/next";
+import { createRouteHandler } from "uploadthing/next"; // ✅ v7-import
 
 const f = createUploadthing();
 
@@ -12,12 +12,12 @@ export const ourFileRouter = {
     }),
 } satisfies FileRouter;
 
-export const { GET, POST } = uploadthingHandler({
+// ✅ v7-sättet att exportera API-route med felhantering
+export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
-    callbackUrl: "/thank-you", // valfritt – kan tas bort
     error: (err) => {
-      console.error("UploadThing Error:", err);
+      console.error("🔥 UploadThing Error:", err);
     },
   },
 });
