@@ -1,30 +1,22 @@
 // app/page.tsx
+
 "use client";
 
-import { UploadButton } from "@uploadthing/react";
-import { ourFileRouter } from "./api/uploadthing/core";
+import { UploadButton } from "uploadthing/react";
+import type { OurFileRouter } from "./api/uploadthing/route";
 
 export default function Home() {
   return (
-    <main style={{ padding: 40, fontFamily: "sans-serif" }}>
-      <h1>🛫 Ladda upp flygfiler till Copture</h1>
-
-      <UploadButton
+    <main className="min-h-screen flex flex-col items-center justify-center p-8">
+      <h1 className="text-3xl font-bold mb-4">Ladda upp flygfiler till Copture</h1>
+      <UploadButton<OurFileRouter>
         endpoint="pilotUploader"
         onClientUploadComplete={(res) => {
-          alert("✅ Uppladdning klar!");
-          console.log("Resultat:", res);
+          alert("✅ Uppladdat!");
+          console.log("Upload response:", res);
         }}
         onUploadError={(error: Error) => {
-          alert("❌ Fel: " + error.message);
-        }}
-        appearance={{
-          button: {
-            backgroundColor: "#222",
-            color: "#fff",
-            padding: "10px 15px",
-            borderRadius: "6px",
-          },
+          alert(`❌ Fel vid uppladdning: ${error.message}`);
         }}
       />
     </main>
