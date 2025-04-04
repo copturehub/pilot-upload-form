@@ -1,5 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/server";
-import { createRouteHandler } from "uploadthing/next"; // ✅ v7-import
+import { createRouteHandler } from "uploadthing/next";
 
 const f = createUploadthing();
 
@@ -12,7 +12,6 @@ export const ourFileRouter = {
     }),
 } satisfies FileRouter;
 
-// ✅ v7-sättet att exportera API-route med felhantering
 export const { GET, POST } = createRouteHandler({
   router: ourFileRouter,
   config: {
