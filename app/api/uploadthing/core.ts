@@ -5,7 +5,9 @@ const f = createUploadthing();
 export const ourFileRouter = {
   pilotUploader: f({ image: { maxFileSize: "4MB" } })
     .onUploadComplete(({ file, metadata }) => {
-      console.log("✅ Upload complete!", file.name);
+      console.log("✅ Upload complete!");
+      console.log("Filnamn:", file.name);
+      console.log("Metadata:", metadata);
     }),
 } satisfies FileRouter;
 
