@@ -1,7 +1,7 @@
 import { init, createUploadthing } from "uploadthing/server";
 import { uploadthingHandler } from "uploadthing/next";
 
-// Initiera med nyckeln du lagt till i Vercel miljövariabler
+// Initiera UploadThing med miljövariabel från Vercel
 init({
   apiKey: process.env.UPLOADTHING_SECRET,
 });
