@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -21,11 +20,9 @@ export default function HomePage() {
       formData.append("file", file);
     }
 
+    formData.append("pilot", pilot); // 🔥 SKA vara egna fält
+    formData.append("project", project);
     formData.append("route", "pilotUploader");
-    formData.append("metadata", JSON.stringify({
-      pilotName: pilot,
-      projectName: project,
-    }));
 
     try {
       const res = await fetch("/api/uploadthing", {
