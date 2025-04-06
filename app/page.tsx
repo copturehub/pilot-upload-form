@@ -20,7 +20,12 @@ export default function HomePage() {
     for (const file of files) {
       formData.append("file", file);
     }
+
     formData.append("route", "pilotUploader");
+    formData.append("metadata", JSON.stringify({
+      pilotName: pilot,
+      projectName: project,
+    }));
 
     try {
       const res = await fetch("/api/uploadthing", {
