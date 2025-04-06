@@ -1,6 +1,6 @@
 // app/api/uploadthing/core.ts
 import { createUploadthing, type FileRouter } from "uploadthing/server";
-import { z } from "zod"; // Lägg till Zod för metadata-validering
+import { z } from "zod";
 
 const f = createUploadthing();
 
@@ -15,8 +15,8 @@ export const ourFileRouter = {
     .onUploadComplete(({ file, metadata }) => {
       console.log("✅ Upload complete!");
       console.log("Filename:", file.name);
-      console.log("Pilot:", metadata.pilotName);
-      console.log("Project:", metadata.projectName);
+      console.log("Pilot:", metadata!.pilotName);     // <- OBS: "!" säger att metadata inte är undefined
+      console.log("Project:", metadata!.projectName); // <- samma här
     }),
 } satisfies FileRouter;
 
